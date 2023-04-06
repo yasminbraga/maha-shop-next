@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetStaticProps, InferGetServerSidePropsType } from "next";
 import React from "react";
 
 interface ProductType {
@@ -18,7 +18,9 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: { products } };
 };
 
-const Products: React.FC = ({ products }) => {
+const Products: React.FC = ({
+  products,
+}: InferGetServerSidePropsType<typeof getStaticProps>) => {
   return (
     <div>
       {products.map((product: ProductType) => (
