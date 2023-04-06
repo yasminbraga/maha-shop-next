@@ -2,11 +2,16 @@ import { AuthContext } from "@/contexts/AuthContext";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 
+type FormValues = {
+  email: string;
+  password: string;
+};
+
 const Signin: React.FC = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<FormValues>();
   const { signin } = useContext(AuthContext);
 
-  const handleSignin = (data) => {
+  const handleSignin = (data: FormValues) => {
     try {
       signin(data);
     } catch (error) {
